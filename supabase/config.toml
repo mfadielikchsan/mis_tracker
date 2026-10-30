@@ -1,0 +1,10 @@
+# Deploy the custom JavaScript entrypoint. JWT is verified inside the function
+# with supabase.auth.getUser(token); verify_jwt=false only disables gateway checks.
+[functions.manage-user]
+verify_jwt = false
+entrypoint = "./functions/manage-user/index.js"
+
+# Push notifikasi (FCM). Dipanggil oleh Database Webhook, dilindungi header x-webhook-secret.
+[functions.send-push]
+verify_jwt = false
+entrypoint = "./functions/send-push/index.js"

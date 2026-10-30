@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffd500" />
+  <title>Admin | MIS Member Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body class="app-page">
+<header class="app-header"><div class="header-inner">
+  <div class="header-brand"><span class="brand-badge"><i class="fa-solid fa-user-shield"></i></span><div><strong>MIS TRACKER</strong><small>ADMINISTRATOR</small></div></div>
+  <button class="icon-button logout-button" id="logoutButton" type="button" aria-label="Logout" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+</div></header>
+<main class="app-content" id="mainContent" aria-busy="true">
+  <section class="greeting"><div><p class="eyebrow">CONFIGURATION</p><h1>Administrator</h1><p class="muted">Kelola member dan pilihan status setiap site.</p></div><span class="site-badge"><i class="fa-solid fa-gear"></i>ADMIN</span></section>
+  <div class="tab-switch" role="tablist" aria-label="Kelola master data">
+    <button type="button" role="tab" aria-selected="true" id="usersTab" data-tab="users"><i class="fa-solid fa-users"></i> Master User</button>
+    <button type="button" role="tab" aria-selected="false" id="statusesTab" data-tab="statuses"><i class="fa-solid fa-list-check"></i> Master Status</button>
+  </div>
+  <div class="feedback error" id="pageError" role="alert" hidden></div>
+
+  <section id="usersPanel" role="tabpanel" aria-labelledby="usersTab">
+    <div class="list-title"><div><h2>Master User</h2><p class="muted">Data karyawan MIS dan hak akses.</p></div><button type="button" class="btn btn-small btn-yellow" id="addUserButton"><i class="fa-solid fa-user-plus"></i> Add User</button></div>
+    <div class="filter-panel admin-filter">
+      <label class="field-label" for="userSearch">Cari user</label>
+      <div class="input-icon"><i class="fa-solid fa-magnifying-glass"></i><input id="userSearch" class="app-input" type="search" placeholder="Cari NIK, nama, email..." /></div>
+      <div class="filter-grid"><div><label class="field-label" for="userSiteFilter">Site</label><select id="userSiteFilter" class="app-select"><option value="">Semua</option><option value="JKT">JKT</option><option value="CKP">CKP</option></select></div>
+      <div><label class="field-label" for="userRoleFilter">Role</label><select id="userRoleFilter" class="app-select"><option value="">Semua</option><option value="admin">Admin</option><option value="user">User</option></select></div>
+      <div><label class="field-label" for="userActiveFilter">Status</label><select id="userActiveFilter" class="app-select"><option value="">Semua</option><option value="true">Active</option><option value="false">Inactive</option></select></div></div>
+    </div>
+    <p class="result-hint" id="userTotal">Memuat...</p><div class="admin-list" id="usersList"><div class="empty-box">Memuat user...</div></div>
+  </section>
+
+  <section id="statusesPanel" role="tabpanel" aria-labelledby="statusesTab" hidden>
+    <div class="list-title"><div><h2>Master Status</h2><p class="muted">Status berdasarkan site JKT / CKP.</p></div><button type="button" class="btn btn-small btn-yellow" id="addStatusButton"><i class="fa-solid fa-circle-plus"></i> Add Status</button></div>
+    <div class="filter-panel admin-filter">
+      <label class="field-label" for="statusSearch">Cari status</label>
+      <div class="input-icon"><i class="fa-solid fa-magnifying-glass"></i><input class="app-input" id="statusSearch" type="search" placeholder="Nama status..." /></div>
+      <div class="filter-grid"><div><label class="field-label" for="statusSiteFilter">Site</label><select class="app-select" id="statusSiteFilter"><option value="">Semua</option><option value="JKT">JKT</option><option value="CKP">CKP</option></select></div>
+      <div><label class="field-label" for="statusActiveFilter">Status</label><select class="app-select" id="statusActiveFilter"><option value="">Semua</option><option value="true">Active</option><option value="false">Inactive</option></select></div></div>
+    </div>
+    <p class="result-hint" id="statusTotal">Memuat...</p><div class="admin-list" id="statusesList"><div class="empty-box">Memuat status...</div></div>
+  </section>
+</main>
+
+<!-- Shared modal: the selected form is inserted by admin.js using safe DOM APIs. -->
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <section class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+    <div class="modal-heading">
+      <span class="modal-icon" aria-hidden="true"><i id="modalIcon" class="fa-solid fa-user-plus"></i></span>
+      <div class="modal-titles"><h2 id="modalHeading">Form</h2><p id="modalSub"></p></div>
+      <button type="button" class="close-button" id="closeModalButton" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="editorForm" novalidate><div id="modalFields" class="modal-fields"></div><div class="feedback error" id="modalError" role="alert" hidden></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-light" id="cancelModalButton">Batal</button>
+        <button type="submit" class="btn btn-primary" id="saveModalButton">Simpan</button>
+      </div>
+    </form>
+  </section>
+</div>
+<nav class="bottom-nav" id="bottomNav" aria-label="Navigasi utama"></nav>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<script type="module" src="./js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffd500" />
+  <title>Monitoring | MIS Member Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body class="app-page">
+  <header class="app-header"><div class="header-inner">
+    <div class="header-brand"><span class="brand-badge"><i class="fa-solid fa-tower-broadcast"></i></span><div><strong>MIS TRACKER</strong><small>MEMBER MONITORING</small></div></div>
+    <button class="icon-button logout-button" id="logoutButton" type="button" aria-label="Logout" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+  </div></header>
+
+  <main class="app-content" id="mainContent" aria-busy="true">
+    <section class="greeting">
+      <div><p class="eyebrow">TEAM OVERVIEW</p><h1>Member Monitoring</h1><p class="muted" id="scopeText">Menyiapkan data member...</p></div>
+      <button class="outline-button" type="button" id="refreshButton" title="Refresh data"><i class="fa-solid fa-rotate"></i> Refresh</button>
+    </section>
+    <section class="monitoring-counts" aria-label="Ringkasan monitoring">
+      <div class="stat"><span class="stat-icon"><i class="fa-solid fa-users"></i></span><span class="stat-label">MEMBER AKTIF</span><strong id="memberCount">—</strong></div>
+      <div class="stat"><span class="stat-icon"><i class="fa-solid fa-user-check"></i></span><span class="stat-label">SUDAH SET STATUS</span><strong id="setCount">—</strong></div>
+      <div class="stat"><span class="stat-icon"><i class="fa-solid fa-bolt"></i></span><span class="stat-label">REALTIME</span><strong id="realtimeBadge" class="connection-indicator">Connecting</strong></div>
+    </section>
+    <section class="filter-panel" aria-label="Filter monitoring">
+      <label class="field-label" for="memberSearch">Cari member</label>
+      <div class="input-icon">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input class="app-input" id="memberSearch" type="search" placeholder="Nama atau NIK..." autocomplete="off" />
+      </div>
+      <div class="filter-grid">
+        <div><label class="field-label" for="statusFilter">Status</label><select class="app-select" id="statusFilter"><option value="">Semua status</option></select></div>
+        <div id="siteFilterGroup" hidden><label class="field-label" for="siteFilter">Site</label><select class="app-select" id="siteFilter"><option value="">Semua site</option><option value="JKT">JKT</option><option value="CKP">CKP</option></select></div>
+        <div><label class="field-label" for="sortFilter">Urutkan</label><select class="app-select" id="sortFilter"><option value="name">Nama (A–Z)</option><option value="recent">Update terbaru</option></select></div>
+      </div>
+    </section>
+    <div class="list-title"><h2>Daftar Member</h2><span id="resultCount">—</span></div>
+    <div class="feedback error" id="pageError" role="alert" hidden></div>
+    <section id="memberList" class="member-list" aria-live="polite"><div class="empty-box">Memuat member...</div></section>
+    <p class="help-text">Menampilkan status terakhir yang dilaporkan anggota, bukan GPS atau lokasi otomatis.</p>
+  </main>
+  <nav class="bottom-nav" id="bottomNav" aria-label="Navigasi utama"></nav>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+  <script type="module" src="./js/monitoring.js"></script>
+</body>
+</html>

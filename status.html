@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffd500" />
+  <title>My Status | MIS Member Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body class="app-page">
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand"><span class="brand-badge"><i class="fa-solid fa-location-crosshairs"></i></span><div><strong>MIS TRACKER</strong><small>MEMBER STATUS</small></div></div>
+      <button class="icon-button logout-button" id="logoutButton" type="button" aria-label="Logout" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+    </div>
+  </header>
+
+  <main class="app-content" id="mainContent" aria-busy="true">
+    <section class="greeting">
+      <div><p class="eyebrow">MY WORK STATUS</p><h1 id="helloName">Halo, ...</h1><p id="currentDate" class="muted">Memuat tanggal...</p></div>
+      <span class="site-badge"><i class="fa-solid fa-location-dot"></i><span id="siteBadge">—</span></span>
+    </section>
+
+    <section class="profile-strip" aria-label="Informasi member">
+      <span><i class="fa-solid fa-id-badge"></i>NIK <strong id="myNik">—</strong></span>
+      <span><i class="fa-solid fa-user-shield"></i>ROLE <strong id="myRole">—</strong></span>
+    </section>
+
+    <section class="current-status-card" aria-labelledby="currentHeading">
+      <div class="current-note" id="currentNoteBox" hidden><i class="fa-solid fa-note-sticky" aria-hidden="true"></i><span id="currentNoteText"></span></div>
+      <div class="current-top"><p class="eyebrow" id="currentHeading">CURRENT STATUS</p><span class="live-indicator"><i></i> STATUS TERAKHIR</span></div>
+      <div class="current-middle"><span id="currentIcon" class="current-emoji" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><div><h2 id="currentStatusName">Memuat...</h2><p id="currentStatusNote" class="muted">Tunggu sebentar</p></div></div>
+      <div class="current-bottom"><span><i class="fa-regular fa-clock"></i> TERAKHIR DIPERBARUI</span><strong id="lastUpdated">—</strong><button type="button" class="current-edit" id="editNoteButton" hidden><i class="fa-solid fa-pen"></i> Catatan</button></div>
+    </section>
+
+    <section class="status-section" aria-labelledby="pickHeading">
+      <div class="section-title"><div><h2 id="pickHeading">Update Status</h2><p>Pilih lokasi atau aktivitas Anda saat ini.</p></div></div>
+      <div id="statusGrid" class="status-grid" aria-live="polite"><div class="empty-box">Memuat pilihan status...</div></div>
+      <p class="status-note">Hanya status aktif untuk site Anda yang ditampilkan.</p>
+    </section>
+    <div class="feedback error page-error" id="pageError" hidden role="alert"></div>
+  </main>
+
+  <nav class="bottom-nav" id="bottomNav" aria-label="Navigasi utama"></nav>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+  <script type="module" src="./js/status.js"></script>
+</body>
+</html>

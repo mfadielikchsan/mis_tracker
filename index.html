@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffd500" />
+  <title>Login | MIS Member Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body class="login-page">
+  <div class="login-deco" aria-hidden="true"><span></span><span></span></div>
+  <main class="login-layout">
+    <div class="brand-row">
+      <div class="brand-mark" aria-hidden="true"><i class="fa-solid fa-location-crosshairs"></i></div>
+      <div class="brand-text"><strong>DUNLOP</strong><small>MIS DEPARTMENT</small></div>
+    </div>
+    <div class="brand-heading">
+      <p class="eyebrow">INTERNAL TOOL</p>
+      <h1>Member <span>Tracker.</span></h1>
+      <p class="subtitle">Update lokasi &amp; aktivitas tim MIS dengan cepat.</p>
+    </div>
+
+    <section class="login-card" aria-labelledby="login-heading">
+      <div class="section-intro">
+        <span class="mini-tag"><i class="fa-solid fa-lock"></i> INTERNAL APP</span>
+        <h2 id="login-heading">Selamat datang</h2>
+        <p>Masuk menggunakan akun MIS Anda.</p>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <label for="email">Email</label>
+        <div class="input-icon">
+          <i class="fa-regular fa-envelope"></i>
+          <input id="email" name="email" type="email" placeholder="nama@dunlop.co.id" autocomplete="username" autocapitalize="none" spellcheck="false" required />
+        </div>
+
+        <label for="password">Password</label>
+        <div class="password-wrap input-icon">
+          <i class="fa-solid fa-key"></i>
+          <input id="password" name="password" type="password" placeholder="Masukkan password" autocomplete="current-password" required />
+          <button id="togglePassword" class="password-toggle" type="button" aria-label="Tampilkan password"><i class="fa-regular fa-eye"></i></button>
+        </div>
+
+        <div id="loginError" class="feedback error" role="alert" hidden></div>
+        <button id="loginButton" class="btn btn-primary full-width" type="submit">
+          <span id="loginButtonText">Masuk</span><i id="loginButtonIcon" class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+      </form>
+    </section>
+
+    <p class="login-footer">MIS Member Status Tracker · Internal Use Only</p>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+  <script type="module" src="./js/login.js"></script>
+</body>
+</html>
